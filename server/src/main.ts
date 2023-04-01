@@ -14,10 +14,10 @@ async function bootstrap() {
       ],
     },
   });
-  await app.listen(3000);
-
   const configService = app.get(ConfigService);
   const port = parseInt(configService.get('PORT'));
+  logger.log(`Server sould RUN on port ${port}`);
+
   await app.listen(port);
 
   logger.log(`Server running on port ${port}`);

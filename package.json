@@ -1,7 +1,7 @@
 {
   "name": "sosket-test",
   "version": "0.0.1",
-  "description": "Make decisions with friends via ranked voting!",
+  "description": "",
   "main": "index.js",
   "workspaces": [
     "client",
@@ -13,13 +13,12 @@
     "client:dev": "npm run dev --workspace=client",
     "server:dev": "wait-on tcp:6379 && npm run start:dev --workspace=server",
     "start": "concurrently 'npm:docker:compose' 'npm:server:dev' 'npm:client:dev'",
-    "storybook": "npm run storybook --workspace=client",
     "stop": "docker-compose down",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JacobSNGoodwin/ranker.git"
+    "url": "git+https://github.com/denshrestha/socket-test.git"
   },
   "keywords": [
     "ts",
@@ -30,7 +29,7 @@
   "author": "Denis Shrestha",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/JacobSNGoodwin/ranker/issues"
+    "url": "https://github.com/denshrestha/socket-test.git"
   },
   "homepage": "https://github.com/denshrestha/socket-test.git",
   "devDependencies": {

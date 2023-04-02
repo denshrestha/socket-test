@@ -1,35 +1,28 @@
 /* eslint-disable prettier/prettier */
 import {
   MessageBody,
+  OnGatewayConnection,
+  OnGatewayDisconnect,
+  OnGatewayInit,
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
-  WsResponse,
 } from '@nestjs/websockets';
-import { from, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Server } from 'socket.io';
+import { EventsService } from './events.service';
 
-@WebSocketGateway({
-  cors: {
-    origin: '*',
-  },
-})
+@WebSocketGateway()
 export class EventsGateway {
+  constructor(private readonly eventsService: EventsService) {}
+  
+
   @WebSocketServer()
   server: Server;
 
   @SubscribeMessage('events')
-  findAll(@MessageBody() data: any): Observable<WsResponse<number>> {
-    console.log(data);
+  async findAll(@MessageBody() data: any): Promise<void> {
+    const evetns = await this.eventsService.addEvent(data);
     
-    return from([1, 2, 3]).pipe(
-      map((item) => ({ event: 'events', data: item })),
-    );
-  }
-
-  @SubscribeMessage('identity')
-  async identity(@MessageBody() data: number): Promise<number> {
-    return data;
+    this.server.emit('events', evetns)
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { redisModule } from './modules.config';
 import { AppService } from './app.service';
 import { AppController } from './app.controller';

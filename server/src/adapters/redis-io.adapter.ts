@@ -12,10 +12,12 @@ export class RedisIoAdapter extends IoAdapter {
     const subClient = pubClient.duplicate();
 
     await Promise.all([pubClient.connect(), subClient.connect()]);
+    console.log('111111111111111111111111111111111')
     this.adapterConstructor = createAdapter(pubClient, subClient);
   }
-
+  
   createIOServer(port: number, options?: ServerOptions): any {
+    console.log('222222222222222222222222222')
     const server = super.createIOServer(port, options);
     server.adapter(this.adapterConstructor);
     return server;
